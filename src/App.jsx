@@ -36,7 +36,6 @@ export default function App() {
   const playStory = (story) => {
     setCurrentStory(story)
 
-    // 💾 sauvegarde légère
     localStorage.setItem('lastStory', JSON.stringify(story))
 
     setTimeout(() => {
@@ -44,6 +43,32 @@ export default function App() {
         audioRef.current.src = story.audio
         audioRef.current.play()
         setIsPlaying(true)
+
+        // 🎧 MEDIA SESSION ICI 👇
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: story.title,
+            artist: "Histoires Audio",
+            album: "Histoires pour bien dormir",
+            artwork: [
+              {
+                src: story.image || "/images/rossignol.jpg",
+                sizes: "512x512",
+                type: "image/png"
+              }
+            ]
+          })
+
+          navigator.mediaSession.setActionHandler("play", () => {
+            audioRef.current.play()
+            setIsPlaying(true)
+          })
+
+          navigator.mediaSession.setActionHandler("pause", () => {
+            audioRef.current.pause()
+            setIsPlaying(false)
+          })
+        }
       }
     }, 0)
   }
