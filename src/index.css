@@ -84,11 +84,10 @@ button:hover {
   bottom: 0;
   left: 0;
   right: 0;
-
-  background: #0b1220;
-  border-top: 1px solid #334155;
-
-  padding: 15px;
+  background: #111;
+  color: white;
+  padding: 10px;
+  z-index: 1000;
 }
 
 .player-content {
@@ -139,14 +138,14 @@ button:hover {
   }
 }
 
+/* 📱 version mobile */
 @media (max-width: 600px) {
-  .player-content {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+  .player {
+    padding: 6px;
+    font-size: 12px;
   }
 
-  .player button {
-    width: 100%;
+  .progress-container {
+    display: none; /* optionnel : on cache la barre */
   }
 }

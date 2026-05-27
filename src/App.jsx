@@ -11,6 +11,9 @@ export default function App() {
   // ✅ AJOUT PROGRESSION
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
+  
+
+  const [isOpen, setIsOpen] = useState(true)
 
   useEffect(() => {
     const savedStory = localStorage.getItem('lastStory')
@@ -93,32 +96,21 @@ export default function App() {
 
   return (
     <div className="app">
-      <h1>Histoires pour toi ❤️</h1>
+      <h1>Histoires pour bien dormir 🤍</h1>
 
       <div className="grid">
         <StoryCard
-          title="La nuit étoilée"
-          description="Une histoire douce"
+          title="Le Rossignol"
+          description="Une histoire qui montre qu’un vrai rossignol est plus précieux qu’un oiseau mécanique."
           audio="/audio/lerossignol.mp3"
           onPlay={() =>
             playStory({
-              title: 'La nuit étoilée',
+              title: 'Le Rossignol',
               audio: '/audio/lerossignol.mp3'
             })
           }
         />
 
-        <StoryCard
-          title="Sous la pluie"
-          description="Ambiance cosy"
-          audio="/audio/histoire1.mp3"
-          onPlay={() =>
-            playStory({
-              title: 'Sous la pluie',
-              audio: '/audio/histoire1.mp3'
-            })
-          }
-        />
       </div>
 
       {/* 🎧 PLAYER FIXE */}
