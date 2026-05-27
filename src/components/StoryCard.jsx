@@ -4,8 +4,14 @@ export default function StoryCard({ title, description, image, onPlay }) {
       
       <img src={image} alt={title} />
 
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <div className="card-content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+
+        <button onClick={onPlay}>
+          Écouter
+        </button>
+      </div>
 
     </div>
   )

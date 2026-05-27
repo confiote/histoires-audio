@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico'],
       manifest: {
-        name: 'Histoires pour toi ❤️',
-        short_name: 'Histoires ❤️',
-        description: 'Histoires audio pour s’endormir',
+        name: 'Histoires pour bien dormir 🤍',
+        short_name: 'Histoires 🤍',
+        description: 'Histoires audio pour bien dormir',
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
