@@ -12,9 +12,6 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
 
-
-  const [isOpen, setIsOpen] = useState(true)
-
   useEffect(() => {
     const savedStory = localStorage.getItem('lastStory')
     const savedProgress = localStorage.getItem('lastProgress')
@@ -111,19 +108,17 @@ export default function App() {
           }
         />
 
-      <div className="grid">
         <StoryCard
-          title="Le Rossignol"
-          description="Une histoire qui montre qu’un vrai rossignol est plus précieux qu’un oiseau mécanique."
-          audio="/audio/lerossignol.mp3"
+          title="Sous la pluie"
+          description="Ambiance cosy"
+          audio="/audio/histoire1.mp3"
           onPlay={() =>
             playStory({
-              title: 'Le Rossignol',
-              audio: '/audio/lerossignol.mp3'
+              title: 'Sous la pluie',
+              audio: '/audio/histoire1.mp3'
             })
           }
         />
-
       </div>
 
       {/* 🎧 PLAYER FIXE */}

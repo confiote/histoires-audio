@@ -84,22 +84,18 @@ button:hover {
   bottom: 0;
   left: 0;
   right: 0;
+
   background: #111;
   color: white;
-  padding: 10px;
+
+  padding: 6px 10px;
   z-index: 1000;
-}
 
-/* 🔽 état fermé */
-.player.closed {
-  height: 50px;
-  overflow: hidden;
-  padding: 5px;
-}
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-/* 🔼 état ouvert */
-.player.open {
-  height: auto;
+  gap: 8px;
 }
 
 .player-content {
@@ -110,13 +106,15 @@ button:hover {
   color: white;
 }
 
+.player audio {
+  height: 30px;
+  width: 140px;
+}
+
 .player button {
-  background: #ec4899;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 999px;
-  color: white;
-  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .progress-container {
@@ -150,14 +148,17 @@ button:hover {
   }
 }
 
-/* 📱 version mobile */
 @media (max-width: 600px) {
   .player {
-    padding: 6px;
-    font-size: 12px;
+    padding: 5px 8px;
   }
 
-  .progress-container {
-    display: none; /* optionnel : on cache la barre */
+  .player audio {
+    width: 110px;
+  }
+
+  .player button {
+    font-size: 11px;
+    padding: 3px 6px;
   }
 }
