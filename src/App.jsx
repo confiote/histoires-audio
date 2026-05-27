@@ -11,7 +11,7 @@ export default function App() {
   // ✅ AJOUT PROGRESSION
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
-  
+
 
   const [isOpen, setIsOpen] = useState(true)
 
@@ -97,6 +97,19 @@ export default function App() {
   return (
     <div className="app">
       <h1>Histoires pour bien dormir 🤍</h1>
+
+      <div className="grid">
+        <StoryCard
+          title="Le Rossignol"
+          description="Une histoire qui montre qu’un vrai rossignol est plus précieux qu’un oiseau mécanique."
+          audio="/audio/lerossignol.mp3"
+          onPlay={() =>
+            playStory({
+              title: 'Le Rossignol',
+              audio: '/audio/lerossignol.mp3'
+            })
+          }
+        />
 
       <div className="grid">
         <StoryCard
