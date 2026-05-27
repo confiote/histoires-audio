@@ -99,23 +99,13 @@ export default function App() {
         <StoryCard
           title="Le Rossignol"
           description="Une histoire qui montre qu’un vrai rossignol est plus précieux qu’un oiseau mécanique."
+          image="/images/rossignol.jpg"
           audio="/audio/lerossignol.mp3"
           onPlay={() =>
             playStory({
               title: 'Le Rossignol',
-              audio: '/audio/lerossignol.mp3'
-            })
-          }
-        />
-
-        <StoryCard
-          title="Sous la pluie"
-          description="Ambiance cosy"
-          audio="/audio/histoire1.mp3"
-          onPlay={() =>
-            playStory({
-              title: 'Sous la pluie',
-              audio: '/audio/histoire1.mp3'
+              audio: '/audio/lerossignol.mp3',
+              image: '/images/rossignol.jpg'
             })
           }
         />
