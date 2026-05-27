@@ -2,7 +2,8 @@ export default function AudioPlayer({ audio, isOpen, setIsOpen }) {
   if (!audio) return null
 
   return (
-    <div className="player">
+    <div className={`player ${isOpen ? "open" : "closed"}`}>
+      
       <audio controls autoPlay>
         <source src={audio} type="audio/mpeg" />
       </audio>
@@ -12,10 +13,11 @@ export default function AudioPlayer({ audio, isOpen, setIsOpen }) {
       </button>
 
       {isOpen && (
-        <div>
-          {/* ici tu peux mettre progression + infos si tu veux */}
+        <div className="extra">
+          {/* infos optionnelles */}
         </div>
       )}
+
     </div>
   )
 }
