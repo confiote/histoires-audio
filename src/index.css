@@ -10,7 +10,8 @@ body {
 }
 
 .app {
-  padding: 40px;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 h1 {
@@ -22,9 +23,10 @@ h1 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-  padding: 0 10px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .card {
@@ -92,20 +94,14 @@ button:hover {
 .player {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 900px;
 
   background: #111;
   color: white;
-
-  padding: 6px 10px;
-  z-index: 1000;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 8px;
+  padding: 10px;
 }
 
 .player-content {
@@ -177,5 +173,13 @@ button:hover {
   .player button {
     font-size: 11px;
     padding: 3px 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .player {
+    left: 0;
+    transform: none;
+    width: 100%;
   }
 }
