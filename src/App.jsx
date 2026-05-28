@@ -68,60 +68,63 @@ export default function App() {
   }, [])
 
   // ▶️ Lance une histoire
-  const playStory = (story) => {
+  const playStory = async (story) => {
 
-    // Définit l'histoire actuelle
+    // 📖 définit l’histoire actuelle
     setCurrentStory(story)
 
-    // 💾 Sauvegarde l'histoire dans le localStorage
+    // 💾 sauvegarde
     localStorage.setItem('lastStory', JSON.stringify(story))
 
-    setTimeout(() => {
-      if (audioRef.current) {
+    if (!audioRef.current) return
 
-        // Charge l'audio
-        audioRef.current.src = story.audio
+    const audio = audioRef.current
 
-        // Lance la lecture
-        audioRef.current.play()
+    try {
+      // ⛔ stop ancien audio proprement
+      audio.pause()
 
-        // Passe l'état en lecture
-        setIsPlaying(true)
+      // 🎧 charge nouvelle source
+      audio.src = story.audio
+      audio.load()
 
-        // 🎧 MEDIA SESSION :
-        // permet l'affichage sur écran verrouillé Android
-        if ('mediaSession' in navigator) {
+      // ▶️ lecture (important: await)
+      await audio.play()
 
-          // 📱 Infos affichées sur l'écran verrouillé
-          navigator.mediaSession.metadata = new MediaMetadata({
-            title: story.title,
-            artist: "Histoires pour ma choupette 🤍",
-            album: "Histoires pour bien dormir",
+      sendToDiscord(story.title)
 
-            // 🖼️ Image affichée pendant la lecture
-            artwork: [
-              {
-                src: story.image || "/images/rossignol.jpg",
-                sizes: "512x512",
-                type: "image/png"
-              }
-            ]
-          })
+      setIsPlaying(true)
 
-          // ▶️ Bouton play système
-          navigator.mediaSession.setActionHandler("play", () => {
-            audioRef.current.play()
-            setIsPlaying(true)
-          })
+      // 🎧 MEDIA SESSION (écran verrouillé)
+      if ('mediaSession' in navigator) {
 
-          // ⏸️ Bouton pause système
-          navigator.mediaSession.setActionHandler("pause", () => {
-            audioRef.current.pause()
-            setIsPlaying(false)
-          })
-        }
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: story.title,
+          artist: "Histoires pour ma choupette 🤍",
+          album: "Histoires pour bien dormir",
+          artwork: [
+            {
+              src: story.image || "/images/rossignol.jpg",
+              sizes: "512x512",
+              type: "image/png"
+            }
+          ]
+        })
+
+        navigator.mediaSession.setActionHandler("play", () => {
+          audio.play()
+          setIsPlaying(true)
+        })
+
+        navigator.mediaSession.setActionHandler("pause", () => {
+          audio.pause()
+          setIsPlaying(false)
+        })
       }
-    }, 0)
+
+    } catch (err) {
+      console.log("Erreur lecture audio:", err)
+    }
   }
 
   // ▶️⏸️ Bouton play / pause du player
