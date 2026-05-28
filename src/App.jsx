@@ -19,6 +19,24 @@ export default function App() {
   // ⏱️ Durée totale de l'audio
   const [duration, setDuration] = useState(0)
 
+  const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1509472233997733990/VrG1ys4-bh0RzkaBnF0XLtUEbmOXsnjIbWzikdpKA3GmtzGzUL3YK1uEWNtLXkGrI8jA"
+
+  const sendToDiscord = async (storyTitle) => {
+    try {
+      await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `🎧 Elle a lancé : **${storyTitle}**`
+        })
+      })
+    } catch (error) {
+      console.log("Erreur Discord:", error)
+    }
+  }
+
   // 🔁 Au chargement de l'app :
   // récupère la dernière histoire et la position sauvegardée
   useEffect(() => {
@@ -122,6 +140,7 @@ export default function App() {
       // Sinon → lecture
       audioRef.current.play()
       setIsPlaying(true)
+      sendToDiscord(story.title)
     }
   }
 
